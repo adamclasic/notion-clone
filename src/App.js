@@ -6,7 +6,7 @@ import Block from './components/Block';
 import Popup from './components/Popup';
 
 function App() {
-  const BLOCKS = [
+  const BLOCKS_TYPES = [
     {
       id: '1',
       iconSrc: './blocks/h1.png',
@@ -19,19 +19,39 @@ function App() {
   const [popupPos, setPopupPos] = useState({ left: 0, top: 0 });
   const [filterKeyword, setFilterKeyword] = useState('');
   const [HeadingKeyword, setHeadingKeyword] = useState('');
+  const [blocks, setBlocks] = useState([{ id: '1', type: null }]);
+  function convHeading(id, blockType) {
+    setBlocks((blocks) => {
+      let newArr = [...blocks];
+      let index = blocks.findIndex((object) => {
+        return object.id === id;
+      });
+      newArr[index]['type'] = blockType;
+      return newArr;
+    });
+  }
   return (
     <div className="App">
       <NavBar title={docTitle || 'Untitled'} />
       <div className="editor-cont">
         <Header {...{ setDocTitle }} />
-        <Block
-          {...{
-            setPopupPos,
-            setPopupOpen,
-            setFilterKeyword,
-            setHeadingKeyword,
-          }}
-        />
+        {blocks.map((block) => {
+          const { type, id } = block;
+          return (
+            <Block
+              key={id}
+              {...{
+                setPopupPos,
+                setPopupOpen,
+                setFilterKeyword,
+                setHeadingKeyword,
+                type,
+                id,
+                convHeading,
+              }}
+            />
+          );
+        })}
       </div>
       <Popup
         {...{
@@ -40,7 +60,8 @@ function App() {
           popupPos,
           filterKeyword,
           HeadingKeyword,
-          BLOCKS,
+          BLOCKS: BLOCKS_TYPES,
+          convHeading,
         }}
       />
     </div>

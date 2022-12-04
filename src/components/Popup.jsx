@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-const ListItem = ({ focus, block }) => {
+const ListItem = ({ focus, block, onClick }) => {
   const { name, shortcut, iconSrc } = block;
   return (
     <div
+      {...{ onClick }}
       className="list-item"
       style={{ backgroundColor: focus ? '#f3f4f6' : 'unset' }}
     >
@@ -33,7 +34,14 @@ const Popup = ({
   filterKeyword,
   setPopupOpen,
   BLOCKS,
+  convHeading,
 }) => {
+  const handleSelect = (id) => {
+    console.log('clicked');
+    setPopupOpen(false);
+    convHeading(id, 'Heading 1');
+    document.getElementById(`${id}`).textContent = '';
+  };
   const filtredBlocks = BLOCKS.filter((e) => e.id.includes(filterKeyword));
   useEffect(() => {
     if (!filtredBlocks.length) {
@@ -91,7 +99,12 @@ const Popup = ({
             )}
           </div>
           {filtredBlocks.map((block) => (
-            <ListItem focus {...{ block }} key={block.id}></ListItem>
+            <ListItem
+              onClick={() => handleSelect(block.id)}
+              focus
+              {...{ block }}
+              key={block.id}
+            ></ListItem>
           ))}
         </div>
       </div>

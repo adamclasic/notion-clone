@@ -45,8 +45,17 @@ body {
   font-family: sans-serif, Helvetica, Arial;
   outline: none;
 }
-.remove-focus {
-
+.block-heading1 {
+  max-width: 100%;
+  width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+  caret-color: rgb(55, 53, 47);
+  padding: 3px 2px;
+  font-family: sans-serif, Helvetica, Arial;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.3;
 }
 .popup-cont {
   border-radius: 4px;
