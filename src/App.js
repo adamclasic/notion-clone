@@ -19,8 +19,9 @@ function App() {
   const [popupPos, setPopupPos] = useState({ left: 0, top: 0 });
   const [filterKeyword, setFilterKeyword] = useState('');
   const [HeadingKeyword, setHeadingKeyword] = useState('');
-  const [blocks, setBlocks] = useState([{ id: '1', type: null }]);
-  function convHeading(id, blockType) {
+  const [blocks, setBlocks] = useState([{ id: '1', type: null, content: '' }]);
+  console.log(blocks);
+  function addHeading(id, blockType) {
     setBlocks((blocks) => {
       let newArr = [...blocks];
       let index = blocks.findIndex((object) => {
@@ -30,10 +31,37 @@ function App() {
       return newArr;
     });
   }
+  function cyncContent(id, content) {
+    setBlocks((blocks) => {
+      let newArr = [...blocks];
+      let index = blocks.findIndex((object) => {
+        return object.id === id;
+      });
+      newArr[index]['content'] = content;
+      return newArr;
+    });
+  }
+  const handleBlankClick = (e) => {
+    if (e.target.className.includes('block')) {
+      return;
+    }
+    if (!blocks[blocks.length - 1].content) {
+      return;
+    }
+    if (!blocks[blocks.length - 1].content) {
+      return;
+    }
+    setBlocks((blocks) => {
+      return [
+        ...blocks,
+        { id: Math.random().toString(16).slice(2), type: null, content: '' },
+      ];
+    });
+  };
   return (
     <div className="App">
       <NavBar title={docTitle || 'Untitled'} />
-      <div className="editor-cont">
+      <div onClick={handleBlankClick} className="editor-cont">
         <Header {...{ setDocTitle }} />
         {blocks.map((block) => {
           const { type, id } = block;
@@ -47,7 +75,8 @@ function App() {
                 setHeadingKeyword,
                 type,
                 id,
-                convHeading,
+                addHeading,
+                cyncContent,
               }}
             />
           );
@@ -61,7 +90,7 @@ function App() {
           filterKeyword,
           HeadingKeyword,
           BLOCKS: BLOCKS_TYPES,
-          convHeading,
+          addHeading,
         }}
       />
     </div>

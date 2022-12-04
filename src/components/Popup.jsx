@@ -34,12 +34,12 @@ const Popup = ({
   filterKeyword,
   setPopupOpen,
   BLOCKS,
-  convHeading,
+  addHeading,
 }) => {
   const handleSelect = (id) => {
     console.log('clicked');
     setPopupOpen(false);
-    convHeading(id, 'Heading 1');
+    addHeading(id, 'Heading 1');
     document.getElementById(`${id}`).textContent = '';
   };
   const filtredBlocks = BLOCKS.filter((e) => e.id.includes(filterKeyword));
