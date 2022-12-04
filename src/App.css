@@ -28,6 +28,7 @@ body {
   caret-color: rgb(55, 53, 47);
   padding: 3px 2px;
   min-height: 1em;
+  outline: none;
 }
 [contentEditable]:empty:after, .forcePlaceholder:after {
   -webkit-text-fill-color: rgba(55, 53, 47, 0.5);
@@ -42,6 +43,10 @@ body {
   display: flex;
   align-items: center;
   font-family: sans-serif, Helvetica, Arial;
+  outline: none;
+}
+.remove-focus {
+
 }
 .popup-cont {
   border-radius: 4px;
