@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 const ListItem = ({ focus, block }) => {
   const { name, shortcut, iconSrc } = block;
   return (
@@ -31,10 +31,30 @@ const Popup = ({
   popupOpen,
   popupPos,
   filterKeyword,
-  HeadingKeyword,
+  setPopupOpen,
   BLOCKS,
 }) => {
   const filtredBlocks = BLOCKS.filter((e) => e.id.includes(filterKeyword));
+  useEffect(() => {
+    if (!filtredBlocks.length) {
+      setPopupOpen(false);
+    }
+  }, [filtredBlocks, setPopupOpen, filterKeyword]);
+
+  useEffect(() => {
+    const closeEvent = (e) => {
+      const popupCont = document.querySelector('.popup-cont');
+      if (!popupCont.contains(e.target)) {
+        setPopupOpen(false);
+      }
+    };
+    document.addEventListener('click', closeEvent);
+
+    return () => {
+      document.removeEventListener('click', closeEvent);
+    };
+  }, [setPopupOpen]);
+
   let { left, top } = popupPos;
   top += 32;
   return (
@@ -53,7 +73,7 @@ const Popup = ({
             <div style={{ color: 'black', fontWeight: 'bold', fontSize: 14 }}>
               Add blocks
             </div>
-            <div>Keep typing to then hit enter.</div>
+            <div>Keep typing then hit enter when done.</div>
             {filterKeyword && (
               <div style={{ color: '#555', fontWeight: 'bold' }}>
                 Filetring keyword{' '}

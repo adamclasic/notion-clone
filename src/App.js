@@ -34,7 +34,14 @@ function App() {
         />
       </div>
       <Popup
-        {...{ popupOpen, popupPos, filterKeyword, HeadingKeyword, BLOCKS }}
+        {...{
+          setPopupOpen,
+          popupOpen,
+          popupPos,
+          filterKeyword,
+          HeadingKeyword,
+          BLOCKS,
+        }}
       />
     </div>
   );
