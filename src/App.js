@@ -41,32 +41,32 @@ function App() {
       return newArr;
     });
   }
-  const handleBlankClick = (e) => {
-    if (e.target.className.includes('block')) {
-      return;
-    }
-    if (!blocks[blocks.length - 1].content) {
-      return;
-    }
-    if (!blocks[blocks.length - 1].content) {
-      return;
-    }
+  function addNewBlock() {
+    const newId = Math.random().toString(16).slice(2);
     setBlocks((blocks) => {
-      return [
-        ...blocks,
-        { id: Math.random().toString(16).slice(2), type: null, content: '' },
-      ];
+      return [...blocks, { id: newId, type: null, content: '' }];
     });
+    return newId;
+  }
+  const handleBlankClick = (e) => {
+    if (
+      e.target.className.includes('block') ||
+      !blocks[blocks.length - 1].content
+    ) {
+      return;
+    }
+    addNewBlock();
   };
   return (
     <div className="App">
       <NavBar title={docTitle || 'Untitled'} />
       <div onClick={handleBlankClick} className="editor-cont">
         <Header {...{ setDocTitle }} />
-        {blocks.map((block) => {
+        {blocks.map((block, index, array) => {
           const { type, id } = block;
           return (
             <Block
+              autoFocus={index === array.length - 1}
               key={id}
               {...{
                 setPopupPos,
@@ -78,6 +78,7 @@ function App() {
                 addHeading,
                 cyncContent,
                 setSelectedBlockId,
+                addNewBlock,
               }}
             />
           );
