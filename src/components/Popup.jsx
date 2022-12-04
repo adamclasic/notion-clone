@@ -4,7 +4,7 @@ const ListItem = ({ focus, block }) => {
   return (
     <div
       className="list-item"
-      style={{ backgroundColor: focus ? 'rgba(55, 53, 47, 0.08)' : 'unset' }}
+      style={{ backgroundColor: focus ? '#f3f4f6' : 'unset' }}
     >
       <div className="icon-cont">
         <div
@@ -80,7 +80,7 @@ const Popup = ({
                 <span
                   style={{
                     color: 'white',
-                    backgroundColor: '#0072b1',
+                    backgroundColor: '#3565a9',
                     borderRadius: 3,
                     padding: '0 3px',
                   }}
