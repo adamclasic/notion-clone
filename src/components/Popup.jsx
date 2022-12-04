@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-const ListItem = ({ focus, block, onClick }) => {
-  const { name, shortcut, iconSrc } = block;
+const ListItem = ({ focus, blockType, onClick }) => {
+  const { name, shortcut, iconSrc } = blockType;
   return (
     <div
       {...{ onClick }}
@@ -33,8 +33,9 @@ const Popup = ({
   popupPos,
   filterKeyword,
   setPopupOpen,
-  BLOCKS,
+  BLOCKS_TYPES,
   addHeading,
+  selectedBlockId,
 }) => {
   const handleSelect = (id) => {
     console.log('clicked');
@@ -42,12 +43,14 @@ const Popup = ({
     addHeading(id, 'Heading 1');
     document.getElementById(`${id}`).textContent = '';
   };
-  const filtredBlocks = BLOCKS.filter((e) => e.id.includes(filterKeyword));
+  const filtredBlockTypes = BLOCKS_TYPES.filter((e) =>
+    e.id.includes(filterKeyword)
+  );
   useEffect(() => {
-    if (!filtredBlocks.length) {
+    if (!filtredBlockTypes.length) {
       setPopupOpen(false);
     }
-  }, [filtredBlocks, setPopupOpen, filterKeyword]);
+  }, [filtredBlockTypes, setPopupOpen, filterKeyword]);
 
   useEffect(() => {
     const closeEvent = (e) => {
@@ -98,12 +101,12 @@ const Popup = ({
               </div>
             )}
           </div>
-          {filtredBlocks.map((block) => (
+          {filtredBlockTypes.map((blockType) => (
             <ListItem
-              onClick={() => handleSelect(block.id)}
+              onClick={() => handleSelect(selectedBlockId)}
               focus
-              {...{ block }}
-              key={block.id}
+              {...{ blockType }}
+              key={blockType.id}
             ></ListItem>
           ))}
         </div>

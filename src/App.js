@@ -19,8 +19,8 @@ function App() {
   const [popupPos, setPopupPos] = useState({ left: 0, top: 0 });
   const [filterKeyword, setFilterKeyword] = useState('');
   const [HeadingKeyword, setHeadingKeyword] = useState('');
+  const [selectedBlockId, setSelectedBlockId] = useState(null);
   const [blocks, setBlocks] = useState([{ id: '1', type: null, content: '' }]);
-  console.log(blocks);
   function addHeading(id, blockType) {
     setBlocks((blocks) => {
       let newArr = [...blocks];
@@ -77,6 +77,7 @@ function App() {
                 id,
                 addHeading,
                 cyncContent,
+                setSelectedBlockId,
               }}
             />
           );
@@ -89,8 +90,9 @@ function App() {
           popupPos,
           filterKeyword,
           HeadingKeyword,
-          BLOCKS: BLOCKS_TYPES,
+          BLOCKS_TYPES,
           addHeading,
+          selectedBlockId,
         }}
       />
     </div>

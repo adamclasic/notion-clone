@@ -3,6 +3,7 @@ const Block = ({
   setPopupOpen,
   setFilterKeyword,
   setHeadingKeyword,
+  setSelectedBlockId,
   type,
   id,
   addHeading,
@@ -48,6 +49,7 @@ const Block = ({
       spellCheck="true"
       placeholder={type === 'Heading 1' ? type : "Type '/' for blocks"}
       contentEditable="true"
+      onClick={() => setSelectedBlockId(id)}
       onKeyDown={handelKeyDown}
       onKeyUp={handelKeyUp}
       id={id}
