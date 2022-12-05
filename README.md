@@ -10,24 +10,33 @@
 
 #### Features:
 
+- [x] Add a new block by clicking on blank.
+- [x] Show a list of avalble blocks to choose from.
+- [x] Prevent a new block from being created if the last block is empty.
+
 <div align="center">
 
-  <img src="./01.png" alt="img" width="300"  height="auto" />
+  <img src="./01.gif" alt="img" width="600"  height="auto" />
   <br/>
 
 </div>
 
+## User friendly:
+
 <div align="center">
 
-  <img src="./02.png" alt="img" width="300"  height="auto" />
+  <img src="./02.png" alt="img" width="700"  height="auto" />
   <br/>
 
 </div>
-#### How to scale:
+
+## Easily scalable :
+
+Simlessly add more block types by adding the styling and detaills in `App.js` file.
 
 ```
   const BLOCKS_TYPES = [
-    // Add blocks here in the folowing format for scalability.
+    // Add blocks new block types to this array following this format.
     {
       id: '1',
       iconSrc: './blocks/h1.png',
