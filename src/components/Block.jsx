@@ -57,7 +57,15 @@ const Block = ({
   return (
     <div
       ref={thisBlock}
-      className={`block ${type === 'Heading 1' && 'block-heading1'}`}
+      className={`block`}
+      style={
+        type && {
+          fontFamily: 'sans-serif, Helvetica, Arial',
+          fontWeight: 600,
+          fontSize: 30,
+          lineHeight: 1.3,
+        }
+      }
       spellCheck="true"
       placeholder={type === 'Heading 1' ? type : "Type '/' for blocks"}
       contentEditable="true"
