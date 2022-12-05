@@ -24,6 +24,7 @@
 
 </div>
 #### How to scale:
+
 ```
   const BLOCKS_TYPES = [
     // Add blocks here in the folowing format for scalability.
@@ -42,6 +43,7 @@
     },
   ];
 ```
+
 ## Installation and Setup Instructions
 
 Clone down this repository. You will need `node` and `npm` installed globally on your machine.
