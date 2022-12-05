@@ -11,7 +11,6 @@ const Popup = ({
   selectedBlockId,
 }) => {
   const handleSelect = (id, type) => {
-    console.log('clicked');
     setPopupOpen(false);
     addHeading(id, type);
     document.getElementById(`${id}`).textContent = '';

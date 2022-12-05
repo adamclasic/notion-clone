@@ -107,3 +107,11 @@ body {
   margin-top: 2px;
   font-size: 12px;
 }
+.breadcrumbs{
+  color: #888;
+  display: inline-block;
+  width: 400px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

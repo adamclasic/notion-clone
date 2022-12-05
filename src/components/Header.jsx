@@ -11,7 +11,6 @@ function Header({ setDocTitle }) {
       placeholder="Untitled"
       contentEditable="true"
       onKeyUp={handelTitle}
-      value="asdf"
     ></div>
   );
 }
