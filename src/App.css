@@ -1,3 +1,7 @@
+:root {
+  --light-grey-color: #ddd;
+  --main-text-color: var(-rgb(55, 53, 47););
+}
 @font-face {
   font-family: 'Segoe UI';
   src: url('/public/fonts/SEGOEUI.TTF');
@@ -23,14 +27,14 @@ body {
   width: 100%;
   white-space: pre-wrap;
   word-break: break-word;
-  caret-color: rgb(55, 53, 47);
+  caret-color: var(--main-text-color);
   padding: 3px 2px;
   min-height: 1em;
   outline: none;
 }
 [contentEditable]:empty:after, .forcePlaceholder:after {
   -webkit-text-fill-color: rgba(55, 53, 47, 0.5);
-  color: rgb(55, 53, 47);
+  color: var(--main-text-color);
   content: attr(placeholder);
 }
 .header {
@@ -42,6 +46,9 @@ body {
   align-items: center;
   font-family: sans-serif, Helvetica, Arial;
   outline: none;
+  border-bottom: 1px solid var(--light-grey-color);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 .popup-cont {
   border-radius: 4px;
@@ -107,11 +114,15 @@ body {
   margin-top: 2px;
   font-size: 12px;
 }
+.navbar {
+  padding: 6px 0;
+}
 .breadcrumbs{
-  color: #888;
+  color: var(--light-grey-color);
   display: inline-block;
   width: 400px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  font-family: sans-serif, Helvetica, Arial;
 }
