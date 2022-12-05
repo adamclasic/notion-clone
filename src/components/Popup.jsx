@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 const ListItem = ({ focus, blockType, onClick }) => {
   const { name, shortcut, iconSrc } = blockType;
   return (

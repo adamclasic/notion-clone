@@ -16,10 +16,9 @@ const Block = ({
     let newBlockId;
     const text = e.target.innerText;
     cyncContent(id, text);
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && !text.startsWith('/1')) {
       e.preventDefault(); // Will prevent a new line when block is Header
-      newBlockId = addNewBlock();
-      console.log(document.getElementById(newBlockId));
+      addNewBlock();
     }
   };
 
@@ -30,15 +29,19 @@ const Block = ({
     if (text[0] === '/') {
       setPopupOpen(true);
       setPopupPos({ top, left });
+      setSelectedBlockId(e.target.id);
       setFilterKeyword(text[1] ?? '');
       if (text[1] === '1') {
         setHeadingKeyword(text.split('/1')[1] ?? '');
         if (e.keyCode === 13) {
           e.preventDefault();
-          document.getElementById(`${id}`).textContent = text.split('/1')[1];
+          document.getElementById(`${id}`).textContent = text
+            .split('/1')[1]
+            .replace(/(\r\n|\n|\r)/gm, '');
           addHeading(id, 'Heading 1');
           setPopupOpen(false);
           e.target.blur();
+          addNewBlock();
         }
       }
     } else {

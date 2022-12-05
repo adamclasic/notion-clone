@@ -19,7 +19,7 @@ function App() {
   const [popupPos, setPopupPos] = useState({ left: 0, top: 0 });
   const [filterKeyword, setFilterKeyword] = useState('');
   const [HeadingKeyword, setHeadingKeyword] = useState('');
-  const [selectedBlockId, setSelectedBlockId] = useState(null);
+  const [selectedBlockId, setSelectedBlockId] = useState('1');
   const [blocks, setBlocks] = useState([{ id: '1', type: null, content: '' }]);
   function addHeading(id, blockType) {
     setBlocks((blocks) => {
@@ -94,6 +94,7 @@ function App() {
           BLOCKS_TYPES,
           addHeading,
           selectedBlockId,
+          setSelectedBlockId,
         }}
       />
     </div>
