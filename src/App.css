@@ -1,38 +1,128 @@
-.App {
-  text-align: center;
+:root {
+  --light-grey-color: #ddd;
+  --main-text-color: var(-rgb(55, 53, 47););
+}
+@font-face {
+  font-family: 'Segoe UI';
+  src: url('/public/fonts/SEGOEUI.TTF');
+}
+body {
+  font-family: i-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.editor-cont {
+  max-width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  font-size: 16px;
+  line-height: 1.5;
+  width: 900px;
+  min-height: 50vh;
+  padding-bottom: 15vh;
+  margin: auto;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.block {
+  max-width: 100%;
+  width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+  caret-color: var(--main-text-color);
+  padding: 3px 2px;
+  min-height: 1em;
+  outline: none;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+[contentEditable]:empty:after, .forcePlaceholder:after {
+  -webkit-text-fill-color: rgba(55, 53, 47, 0.5);
+  color: var(--main-text-color);
+  content: attr(placeholder);
+}
+.header {
+  font-weight: 700;
+  line-height: 1.2;
+  font-size: 40px;
+  cursor: text;
+  display: flex;
+  align-items: center;
+  font-family: sans-serif, Helvetica, Arial;
+  outline: none;
+  border-bottom: 1px solid var(--light-grey-color);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.popup-cont {
+  border-radius: 4px;
+  background: white;
+  position: relative;
+  max-width: calc(100vw - 24px);
+  box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
+  height: 350px;
+  overflow: hidden;
+}
+.popup {
   display: flex;
   flex-direction: column;
+  width: 300px;
+  min-width: 180px;
+  height: 100%;
+}
+.popup-head {
+  display: flex;
+  flex-direction: column;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  color: rgba(55, 53, 47, 0.65);
+  font-size: 11px;
+  padding: 0 6px;
+}
+.list-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  user-select: none;
+  min-height: 45px;
+  font-size: 14px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.icon-cont {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-left: 10px;
+  margin-right: 4px;
+  margin-top: 1px;
+  align-self: flex-start;
 }
-
-.App-link {
-  color: #61dafb;
+.icon-cont > div {
+  display: block;
+  object-fit: cover;
+  width: 46px;
+  height: 46px;
+  background-size: cover;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.block-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.block-title-secondary {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgba(55, 53, 47, 0.65);
+  margin-top: 2px;
+  font-size: 12px;
+}
+.navbar {
+  padding: 6px 0;
+}
+.breadcrumbs{
+  color: var(--light-grey-color);
+  display: inline-block;
+  width: 400px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: sans-serif, Helvetica, Arial;
 }
