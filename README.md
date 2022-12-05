@@ -66,6 +66,4 @@ To Visit App:
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> Add a link to your deployed project.
-
-- [Live Demo Link](https://yourdeployedapplicationlink.com)
+- [Live Demo Link](https://638de07f2becdf7c7c6e330a--rich-text-editor-notion.netlify.app)
