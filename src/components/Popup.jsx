@@ -1,11 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 const ListItem = ({ focus, blockType, onClick }) => {
+  const [IsHovered, setIsHovered] = useState(false);
   const { name, shortcut, iconSrc } = blockType;
   return (
     <div
       {...{ onClick }}
       className="list-item"
-      style={{ backgroundColor: focus ? '#f3f4f6' : 'unset' }}
+      style={{ backgroundColor: IsHovered || focus ? '#f3f4f6' : 'unset' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="icon-cont">
         <div
@@ -37,10 +40,10 @@ const Popup = ({
   addHeading,
   selectedBlockId,
 }) => {
-  const handleSelect = (id) => {
+  const handleSelect = (id, type) => {
     console.log('clicked');
     setPopupOpen(false);
-    addHeading(id, 'Heading 1');
+    addHeading(id, type);
     document.getElementById(`${id}`).textContent = '';
   };
   const filtredBlockTypes = BLOCKS_TYPES.filter((e) =>
@@ -101,10 +104,10 @@ const Popup = ({
               </div>
             )}
           </div>
-          {filtredBlockTypes.map((blockType) => (
+          {filtredBlockTypes.map((blockType, index, arr) => (
             <ListItem
-              onClick={() => handleSelect(selectedBlockId)}
-              focus
+              onClick={() => handleSelect(selectedBlockId, blockType)}
+              focus={arr.length === 1}
               {...{ blockType }}
               key={blockType.id}
             ></ListItem>

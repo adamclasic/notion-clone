@@ -11,6 +11,7 @@ const Block = ({
   cyncContent,
   addNewBlock,
   autoFocus,
+  BLOCKS_TYPES,
 }) => {
   const handelKeyDown = (e) => {
     let newBlockId;
@@ -31,14 +32,18 @@ const Block = ({
       setPopupPos({ top, left });
       setSelectedBlockId(e.target.id);
       setFilterKeyword(text[1] ?? '');
-      if (text[1] === '1') {
-        setHeadingKeyword(text.split('/1')[1] ?? '');
+      const typedSC = text.split('/')[1];
+      const foundType = BLOCKS_TYPES.find((b) =>
+        typedSC.startsWith(b.shortcut)
+      );
+      if (foundType) {
+        setHeadingKeyword('/' + typedSC ?? '');
         if (e.keyCode === 13) {
           e.preventDefault();
           document.getElementById(`${id}`).textContent = text
-            .split('/1')[1]
+            .split(foundType.shortcut)[1]
             .replace(/(\r\n|\n|\r)/gm, '');
-          addHeading(id, 'Heading 1');
+          addHeading(id, foundType);
           setPopupOpen(false);
           e.target.blur();
           addNewBlock();
@@ -58,16 +63,9 @@ const Block = ({
     <div
       ref={thisBlock}
       className={`block`}
-      style={
-        type && {
-          fontFamily: 'sans-serif, Helvetica, Arial',
-          fontWeight: 600,
-          fontSize: 30,
-          lineHeight: 1.3,
-        }
-      }
+      style={type && type.styling}
       spellCheck="true"
-      placeholder={type === 'Heading 1' ? type : "Type '/' for blocks"}
+      placeholder={type ? type.name : "Type '/' for blocks"}
       contentEditable="true"
       onClick={() => setSelectedBlockId(id)}
       onKeyDown={handelKeyDown}

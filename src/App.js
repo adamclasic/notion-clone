@@ -11,7 +11,14 @@ function App() {
       id: '1',
       iconSrc: './blocks/h1.png',
       name: 'Heading 1',
-      shortcut: 'type / + 1',
+      shortcut: '1',
+      discription: 'type / + 1',
+      styling: {
+        fontFamily: 'sans-serif, Helvetica, Arial',
+        fontWeight: 600,
+        fontSize: 30,
+        lineHeight: 1.3,
+      },
     },
   ];
   const [docTitle, setDocTitle] = useState('');
@@ -79,6 +86,7 @@ function App() {
                 cyncContent,
                 setSelectedBlockId,
                 addNewBlock,
+                BLOCKS_TYPES,
               }}
             />
           );
