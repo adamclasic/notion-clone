@@ -7,8 +7,6 @@ body {
 }
 
 .editor-cont {
-  flex-shrink: 0;
-  flex-grow: 1;
   max-width: 100%;
   display: flex;
   align-items: flex-start;
@@ -17,7 +15,6 @@ body {
   line-height: 1.5;
   width: 900px;
   min-height: 50vh;
-  z-index: 4;
   padding-bottom: 15vh;
   margin: auto;
 }

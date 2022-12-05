@@ -14,7 +14,6 @@ const Block = ({
   BLOCKS_TYPES,
 }) => {
   const handelKeyDown = (e) => {
-    let newBlockId;
     const text = e.target.innerText;
     cyncContent(id, text);
     if (e.keyCode === 13 && !text.startsWith('/1')) {
@@ -22,7 +21,9 @@ const Block = ({
       addNewBlock();
     }
   };
-
+  function trimContent(content, foundType) {
+    return content.split(foundType.shortcut)[1].replace(/(\r\n|\n|\r)/gm, '');
+  }
   const handelKeyUp = (e) => {
     const text = e.target.innerText;
     const { top, left } = e.target.getBoundingClientRect();
@@ -39,10 +40,12 @@ const Block = ({
       if (foundType) {
         setHeadingKeyword('/' + typedSC ?? '');
         if (e.keyCode === 13) {
+          // checks is key pressed is Enter
           e.preventDefault();
-          document.getElementById(`${id}`).textContent = text
-            .split(foundType.shortcut)[1]
-            .replace(/(\r\n|\n|\r)/gm, '');
+          document.getElementById(`${id}`).textContent = trimContent(
+            text,
+            foundType
+          );
           addHeading(id, foundType);
           setPopupOpen(false);
           e.target.blur();

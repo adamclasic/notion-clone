@@ -28,6 +28,7 @@ function App() {
   const [HeadingKeyword, setHeadingKeyword] = useState('');
   const [selectedBlockId, setSelectedBlockId] = useState('1');
   const [blocks, setBlocks] = useState([{ id: '1', type: null, content: '' }]);
+
   function addHeading(id, blockType) {
     setBlocks((blocks) => {
       let newArr = [...blocks];
