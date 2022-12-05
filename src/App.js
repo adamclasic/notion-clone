@@ -7,6 +7,7 @@ import Popup from './components/Popup';
 
 function App() {
   const BLOCKS_TYPES = [
+    // Add blocks here in the folowing format for scalability.
     {
       id: '1',
       iconSrc: './blocks/h1.png',

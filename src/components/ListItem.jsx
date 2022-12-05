@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 const ListItem = ({ focus, blockType, onClick }) => {
   const [IsHovered, setIsHovered] = useState(false);
-  const { name, shortcut, iconSrc } = blockType;
+  const { name, discription, iconSrc } = blockType;
   return (
     <div
       {...{ onClick }}
@@ -25,7 +25,7 @@ const ListItem = ({ focus, blockType, onClick }) => {
           </div>
         </div>
 
-        <div className="block-title-secondary">Shortcut: {shortcut}</div>
+        <div className="block-title-secondary">Shortcut: {discription}</div>
       </div>
     </div>
   );
